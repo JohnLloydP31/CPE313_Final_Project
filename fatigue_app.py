@@ -1,1 +1,32 @@
+import streamlit as st
+from PIL import Image
+import numpy as np
+from ultralytics import YOLO
+import cv2
+import tempfile
+
+# Load the trained model
+model = YOLO(r"C:\Users\user\Documents\data sci 3\runs\detect\train\weights\best.pt")
+
+st.title("Fatigue Detection with YOLO")
+st.write("Upload an image to detect 'awake' or 'fatigued' faces.")
+
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+
+if uploaded_file is not None:
+    # Load image
+    image = Image.open(uploaded_file).convert("RGB")
+    st.image(image, caption='Uploaded Image', use_column_width=True)
+
+    # Convert to NumPy array
+    image_np = np.array(image)
+
+    # Inference
+    results = model(image_np)
+
+    # Draw results on image
+    annotated_frame = results[0].plot()
+
+    # Display result
+    st.image(annotated_frame, caption='Detected', use_column_width=True)
 
