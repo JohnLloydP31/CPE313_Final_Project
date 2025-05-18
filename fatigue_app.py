@@ -6,7 +6,7 @@ import cv2
 import tempfile
 
 # Load the trained model
-model = YOLO(r"C:\Users\user\Documents\data sci 3\runs\detect\train\weights\best.pt")
+model = YOLO("best.pt")
 
 st.title("Fatigue Detection with YOLO")
 st.write("Upload an image to detect 'awake' or 'fatigued' faces.")
