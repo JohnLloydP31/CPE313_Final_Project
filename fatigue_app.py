@@ -1,34 +1,31 @@
 import streamlit as st
-import cv2
-import numpy as np
 from PIL import Image
+import numpy as np
 from ultralytics import YOLO
+import cv2
 import tempfile
-import os
-from io import BytesIO
 
-st.title("Fatigue Detection using YOLOv11")
+# Load the trained model
+model = YOLO("best.pt")
 
-# Load the YOLO model
-model = YOLO("best.pt")  # update path as needed
+st.title("Fatigue Detection with YOLO")
+st.write("Upload an image to detect 'awake' or 'fatigued' faces.")
 
-uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
-    # Display the uploaded image
-    image = Image.open(BytesIO(uploaded_file.read())).convert("RGB")
-    st.image(image, caption="Uploaded Image", use_container_width=True)
+    # Load image
+    image = Image.open(uploaded_file).convert("RGB")
+    st.image(image, caption='Uploaded Image', use_column_width=True)
 
-    # Detect button
-    if st.button("Detect"):
-        # Convert PIL image to NumPy array and BGR for OpenCV
-        img_array = np.array(image)
-        img_bgr = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
+    # Convert to NumPy array
+    image_np = np.array(image)
 
-        # Save to a temporary file for YOLOv8
-        with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmp_file:
-            cv2.imwrite(tmp_file.name, img_bgr)
-            results = model(tmp_file.name)
-            annotated_frame = results[0].plot()
+    # Inference
+    results = model(image_np)
 
-        st.image(annotated_frame, caption="Detected Image", use_container_width=True)
+    # Draw results on image
+    annotated_frame = results[0].plot()
+
+    # Display result
+    st.image(annotated_frame, caption='Detected', use_column_width=True)
