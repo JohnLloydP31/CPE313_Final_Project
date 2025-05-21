@@ -4,6 +4,7 @@ import numpy as np
 from ultralytics import YOLO
 import cv2
 import tempfile
+from PIL import ImageOps
 
 # Load the trained model
 model = YOLO("best.pt")
@@ -15,7 +16,8 @@ uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png
 
 if uploaded_file is not None:
     # Load image
-    image = Image.open(uploaded_file).convert("RGB")
+    image = Image.open(uploaded_file)
+    image = ImageOps.exif_transpose(image).convert("RGB")
     st.image(image, caption='Uploaded Image', use_container_width=True)
 
     # Convert to NumPy array
