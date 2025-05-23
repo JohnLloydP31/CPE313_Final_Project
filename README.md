@@ -11,5 +11,5 @@ The UTA-RLDD dataset, composed of RGB video recordings, features 60 participants
 ## Metrics
 For object detection the main focus for the metric is mAP. The highest mAP result will be used to deploy in streamlit.
 ## Contributions
-- Wrote the abstract, second half of rerllted works, and method for object detection
+- Wrote the abstract, second half of related works, and method for object detection of the paper
 
