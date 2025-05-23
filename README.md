@@ -3,4 +3,4 @@ Using the capability of deep learning-based object detectors for robust fatigue 
 ## Dataset and Preprocessing
 The UTA-RLDD dataset, composed of RGB video recordings, features 60 participants categorized into three states: alert, low vigilance, and drowsy. To streamline the training process, only the alert and drowsy videos are utilized, excluding those labeled as low vigilant.
 ## Model
-<b> YOLOv11:<b> YOLOv11 improves multiscale object detection by including an upgraded Feature Pyramid Network (FPN) that efficiently leverages features at different scales, allowing for exact object detection across varying sizes by exploiting numerous feature map resolutions
+<b> YOLOv11:</b> YOLOv11 improves multiscale object detection by including an upgraded Feature Pyramid Network (FPN) that efficiently leverages features at different scales, allowing for exact object detection across varying sizes by exploiting numerous feature map resolutions
