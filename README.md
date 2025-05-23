@@ -10,4 +10,6 @@ The UTA-RLDD dataset, composed of RGB video recordings, features 60 participants
 <b>RT-DETR:</b> RT-DETR is a real-time target detection model that uses the attention mechanism. It includes a backbone network and a hybrid encoder with an auxiliary prediction head to improve detection performance.  Figure 5 shows the summary of the architecture of RT-DETR.
 ## Metrics
 For object detection the main focus for the metric is mAP. The highest mAP result will be used to deploy in streamlit.
+## Contributions
+- Wrote the abstract, second half of rerllted works, and method for object detection
 
